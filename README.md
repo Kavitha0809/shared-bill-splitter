@@ -155,3 +155,14 @@ You must understand every line you submit. We check this with your video and in 
 5. Paste the repository link and the video link in the application form.
 
 We will run `pnpm install && pnpm check && pnpm typecheck && pnpm test` on your repository.
+
+
+Decisions
+
+1.Integer-based money calculations: I used integer paise instead of floating-point rupees to avoid precision errors during bill splitting.
+
+2.Remainder distribution: When a bill cannot be divided equally, I distribute the remaining paise in member insertion order so that the total of all shares always matches the original bill amount.
+
+3.Idempotent payments: I store the idempotency key directly in the shares table and use conditional database updates to prevent duplicate payments, including concurrent requests.
+
+
